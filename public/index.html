@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Refrigeração - Solução em Refrigeração (Org. Kilren)</title>
+
+    <!-- Google Fonts: Montserrat & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        logo: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        'k-dark': '#050B14',
+                        'k-blue-deep': '#0A1931',
+                        'k-neon': '#00d2ff',
+                        'k-neon-dark': '#0055ff',
+                        'k-silver-light': '#ffffff',
+                        'k-silver-mid': '#b0b5ba',
+                        'k-silver-dark': '#5a6068',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 25px rgba(0, 210, 255, 0.5)',
+                        'neon-strong': '0 0 45px rgba(0, 210, 255, 0.8)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050B14;
+            color: #E2E8F0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(rgba(0, 210, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        /* Logo Estilos Integrados */
+        :root {
+            --neon-blue: #00d2ff;
+            --neon-blue-dark: #0055ff;
+            --silver-light: #ffffff;
+            --silver-mid: #b0b5ba;
+            --silver-dark: #5a6068;
+            --bg-center: #0a1931;
+            --bg-edge: #020617;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 75vmin;
+            height: 75vmin;
+            max-width: 420px;
+            max-height: 420px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, var(--bg-center) 0%, var(--bg-edge) 75%, black 100%);
+            border: 4px solid #c0c0c0;
+            box-shadow:
+                0 0 25px var(--neon-blue),
+                inset 0 0 35px var(--neon-blue-dark),
+                0 0 8px #ffffff,
+                inset 0 0 8px #ffffff;
+            animation: pulse-neon 3s ease-in-out infinite alternate;
+            margin: 0 auto;
+        }
+
+        .logo-container-sm {
+            width: 140px;
+            height: 140px;
+            max-width: 140px;
+            max-height: 140px;
+            border: 2px solid #c0c0c0;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 20px var(--neon-blue), inset 0 0 30px var(--neon-blue-dark); }
+            100% { box-shadow: 0 0 45px var(--neon-blue), inset 0 0 50px var(--neon-blue-dark); }
+        }
+
+        .logo-element {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .metallic-text {
+            background: linear-gradient(
+                110deg,
+                var(--silver-dark) 0%,
+                var(--silver-light) 20%,
+                var(--silver-mid) 40%,
+                var(--silver-dark) 60%,
+                var(--silver-light) 80%,
+                var(--silver-dark) 100%
+            );
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+            filter: drop-shadow(2px 2px 0px #000) drop-shadow(3px 4px 3px rgba(0,0,0,0.8));
+            text-align: center;
+            line-height: 1;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @keyframes shine {
+            to { background-position: -200% center; }
+        }
+
+        .snow-wrapper {
+            top: 10%;
+            height: 20%;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+        }
+        .snow-icon {
+            height: 100%;
+            width: auto;
+            animation: spin 15s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .center-group {
+            top: 45%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5%;
+            width: 90%;
+        }
+
+        .giant-k {
+            font-size: 17vmin;
+            font-weight: 900;
+        }
+
+        .logo-container-sm .giant-k {
+            font-size: 32px;
+        }
+
+        .giant-k.flipped {
+            transform: scaleX(-1);
+        }
+
+        .middle-text-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1vmin;
+        }
+
+        .text-refrigeracao {
+            font-size: 5.5vmin;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5vmin;
+        }
+
+        .logo-container-sm .text-refrigeracao {
+            font-size: 9px;
+        }
+
+        .text-solucao {
+            font-size: 1.6vmin;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue-dark);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo-container-sm .text-solucao {
+            font-size: 3.5px;
+            letter-spacing: 0.5px;
+            gap: 2px;
+        }
+
+        .text-solucao::before, .text-solucao::after {
+            content: "";
+            display: block;
+            width: 1.2vmin;
+            height: 2px;
+            background-color: var(--neon-blue);
+        }
+
+        .logo-container-sm .text-solucao::before, .logo-container-sm .text-solucao::after {
+            width: 4px;
+            height: 1.5px;
+        }
+
+        .wave-wrapper {
+            top: 64%;
+            width: 78%;
+            height: 9%;
+        }
+
+        .wave-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 6px var(--neon-blue));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .footer-group {
+            top: 79%;
+            font-size: 3.2vmin;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 1vmin;
+        }
+
+        .logo-container-sm .footer-group {
+            font-size: 8px;
+            gap: 4px;
+            top: 81%;
+        }
+
+        .footer-group::before, .footer-group::after {
+            content: "";
+            display: block;
+            width: 2.5vmin;
+            height: 2px;
+            background: linear-gradient(90deg, var(--silver-dark), var(--silver-light));
+        }
+
+        .logo-container-sm .footer-group::before, .logo-container-sm .footer-group::after {
+            width: 8px;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            border-color: #00d2ff;
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+        }
+
+        .btn-neon-glow {
+            background: linear-gradient(135deg, #0055ff, #00d2ff);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        }
+        .btn-neon-glow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="selection:bg-k-neon selection:text-k-dark">
+
+    <div class="bg-pattern"></div>
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-k-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 h-30 flex items-center justify-between">
+
+            <!-- Logo Pequena com Animação -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="logo-container logo-container-sm pointer-events-none transform group-hover:scale-105 transition-transform">
+                    <div class="logo-element snow-wrapper">
+                        <svg class="snow-icon" viewBox="0 0 100 100" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                            <g transform="translate(50, 50)">
+                                <g id="snow-branch-sm">
+                                    <line x1="0" y1="0" x2="0" y2="-40" />
+                                    <line x1="0" y1="-20" x2="-10" y2="-30" />
+                                    <line x1="0" y1="-20" x2="10" y2="-30" />
+                                    <line x1="0" y1="-10" x2="-6" y2="-16" />
+                                    <line x1="0" y1="-10" x2="6" y2="-16" />
+                                </g>
+                                <use href="#snow-branch-sm" transform="rotate(60)" />
+                                <use href="#snow-branch-sm" transform="rotate(120)" />
+                                <use href="#snow-branch-sm" transform="rotate(180)" />
+                                <use href="#snow-branch-sm" transform="rotate(240)" />
+                                <use href="#snow-branch-sm" transform="rotate(300)" />
+                                <polygon points="0,-8 7,-4 7,4 0,8 -7,4 -7,-4" fill="#ffffff" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="logo-element center-group">
+                        <div class="giant-k metallic-text">K</div>
+                        <div class="middle-text-col">
+                            <div class="text-refrigeracao metallic-text">REFRIGERAÇÃO</div>
+                            <div class="text-solucao">SOLUÇÃO EM REFRIGERAÇÃO</div>
+                        </div>
+                        <div class="giant-k flipped metallic-text">K</div>
+                    </div>
+                    <div class="logo-element wave-wrapper">
+                        <svg class="wave-svg" viewBox="0 0 400 60" preserveAspectRatio="none">
+                            <path d="M 0 30 Q 100 0 200 30 T 400 30" fill="none" stroke="#0033aa" stroke-width="6" opacity="0.5"/>
+                            <path d="M 0 35 Q 100 5 200 35 T 400 35" fill="none" stroke="#00d2ff" stroke-width="4"/>
+                            <path d="M 0 40 Q 100 10 200 40 T 400 40" fill="none" stroke="#0077ff" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="logo-element footer-group metallic-text">Org. Kilren</div>
+                </div>
+
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#servicos" class="hover:text-k-neon transition-colors">Serviços</a>
+                <a href="#field" class="hover:text-k-neon transition-colors">Atendimento Field</a>
+                <a href="#clientes" class="hover:text-k-neon transition-colors">Clientes</a>
+                <a href="#localizacao" class="hover:text-k-neon transition-colors">Localização</a>
+            </nav>
+
+            <!-- Botão Técnico Topo -->
+            <div>
+                <a href="https://wa.me/5591991248822?text=Olá,%20vi%20o%20site%20e%20preciso%20falar%20com%20um%20técnico%20agora!" target="_blank"
+                   class="btn-neon-glow text-white font-bold text-sm px-6 py-3 rounded-full flex items-center gap-2">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                    <span class="hidden sm:inline">Falar com Técnico</span>
+                    <span class="sm:hidden">WhatsApp</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="relative pt-36 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-k-neon/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <!-- Coluna da Esquerda (Textos e Botões mantidos intactos) -->
+            <div class="lg:col-span-6 text-center lg:text-left space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-k-neon/10 border border-k-neon/30 text-k-neon text-xs font-bold uppercase tracking-wider">
+                    <i class="ph-fill ph-snowflake"></i> Assistência Técnica Especializada
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+                    A Solução Definitiva em <span class="text-k-neon">Refrigeração</span>
+                </h1>
+
+                <p class="text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Garantimos o funcionamento perfeito de ambientes residenciais, comerciais e industriais. Atendimento ágil em campo com engenharia e técnica de excelência.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="https://wa.me/5591991248822?text=Olá,%20preciso%20de%20atendimento%20técnico%20agora!" target="_blank"
+                       class="btn-neon-glow text-white font-black text-base px-8 py-4 rounded-full flex items-center gap-3 w-full sm:w-auto justify-center"
+                       style="background: linear-gradient(90deg, #0055ff, #00d2ff); box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);">
+                        <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+                        FALAR COM O TÉCNICO AGORA
+                    </a>
+                    <a href="#servicos" class="px-6 py-4 rounded-full border border-slate-700 hover:border-k-neon text-white font-medium transition-all w-full sm:w-auto text-center">
+                        Conhecer Serviços
+                    </a>
+                </div>
+
+                <div class="flex items-center justify-center lg:justify-start gap-8 pt-6 border-t border-white/10 text-slate-400 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class="ph-fill ph-check-circle text-k-neon text-lg"></i><span>Rapidez no atendimento</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="ph-fill ph-check-circle text-k-neon text-lg"></i><span>Garantia em Peças</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="ph-fill ph-check-circle text-k-neon text-lg"></i><span>Técnico Especialista</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna da Direita (Nova Animação Moderna de Fundo) -->
+            <div class="lg:col-span-6 flex justify-center items-center relative min-h-[400px]">
+
+                <style>
+                    .cooling-core-container {
+                        position: relative;
+                        width: 100%;
+                        max-width: 400px;
+                        aspect-ratio: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    /* Anéis orbitais giratórios */
+                    .orbit-ring {
+                        position: absolute;
+                        border-radius: 50%;
+                        border: 2px solid transparent;
+                    }
+                    .ring-outer {
+                        inset: 0;
+                        border-top-color: #00d2ff;
+                        border-bottom-color: #00d2ff;
+                        animation: spin-orbit 12s linear infinite;
+                        opacity: 0.3;
+                    }
+                    .ring-middle {
+                        inset: 30px;
+                        border-left-color: #ffffff;
+                        border-right-color: #ffffff;
+                        animation: spin-orbit 8s linear infinite reverse;
+                        opacity: 0.2;
+                    }
+                    .ring-inner {
+                        inset: 60px;
+                        border-top-color: #0055ff;
+                        border-left-color: #0055ff;
+                        border-bottom-color: #0055ff;
+                        animation: spin-orbit 5s linear infinite;
+                        opacity: 0.6;
+                    }
+
+                    /* Efeito de ondas de frio expandindo */
+                    .cold-wave {
+                        position: absolute;
+                        width: 140px;
+                        height: 140px;
+                        border-radius: 50%;
+                        border: 2px solid #00d2ff;
+                        animation: emit-cold 3s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+                        opacity: 0;
+                    }
+                    .cold-wave:nth-child(2) { animation-delay: 1s; }
+                    .cold-wave:nth-child(3) { animation-delay: 2s; }
+
+                    /* Núcleo central brilhante */
+                    .core-glow {
+                        position: absolute;
+                        width: 140px;
+                        height: 140px;
+                        background: radial-gradient(circle, #00d2ff 0%, transparent 70%);
+                        border-radius: 50%;
+                        animation: pulse-core 2.5s ease-in-out infinite alternate;
+                        filter: blur(15px);
+                    }
+                    .core-icon {
+                        position: relative;
+                        z-index: 10;
+                        color: #ffffff;
+                        font-size: 3.5rem;
+                        filter: drop-shadow(0 0 15px #00d2ff);
+                        animation: float-icon 4s ease-in-out infinite;
+                    }
+
+                    @keyframes spin-orbit {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                    @keyframes pulse-core {
+                        0% { transform: scale(0.8); opacity: 0.6; }
+                        100% { transform: scale(1.2); opacity: 1; }
+                    }
+                    @keyframes emit-cold {
+                        0% { transform: scale(1); opacity: 0.8; border-width: 3px; }
+                        100% { transform: scale(3.5); opacity: 0; border-width: 0; }
+                    }
+                    @keyframes float-icon {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-10px); }
+                    }
+                </style>
+
+                <div class="cooling-core-container">
+                    <!-- Ondas de Frio (Partículas expandindo) -->
+                    <div class="cold-wave"></div>
+                    <div class="cold-wave"></div>
+                    <div class="cold-wave"></div>
+
+                    <!-- Anéis Orbitais -->
+                    <div class="orbit-ring ring-outer"></div>
+                    <div class="orbit-ring ring-middle"></div>
+                    <div class="orbit-ring ring-inner"></div>
+
+                    <!-- Núcleo Central -->
+                    <div class="core-glow"></div>
+
+                    <!-- Ícone no Centro do Núcleo -->
+                    <i class="ph ph-wind core-icon"></i>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+    <section id="servicos" class="py-24 bg-k-blue-deep/30 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-k-neon font-bold tracking-widest uppercase text-sm">O Que Fazemos</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Nossos <span class="text-k-neon">Serviços de Refrigeração</span></h3>
+                <p class="text-slate-400">Atendimento completo com excelência técnica para garantir que seus equipamentos operem com máxima eficiência energética e desempenho.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Servico 1 -->
+                <div class="card-hover bg-k-dark border border-white/10 rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-k-neon/10 rounded-xl flex items-center justify-center text-k-neon text-2xl mb-6">
+                        <i class="ph-fill ph-wrench"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Instalação Especializada</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Instalação técnica rigorosa de ares-condicionados split, cassete, piso-teto e sistemas industriais seguindo todas as normas dos fabricantes.
+                    </p>
+                </div>
+
+                <!-- Servico 2 -->
+                <div class="card-hover bg-k-dark border border-white/10 rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-k-neon/10 rounded-xl flex items-center justify-center text-k-neon text-2xl mb-6">
+                        <i class="ph-fill ph-shield-check"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Manutenção Preventiva</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Limpeza profunda, higienização contra bactérias, teste de pressão, recarga de gás e verificação elétrica para evitar falhas inesperadas.
+                    </p>
+                </div>
+
+                <!-- Servico 3 -->
+                <div class="card-hover bg-k-dark border border-white/10 rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-k-neon/10 rounded-xl flex items-center justify-center text-k-neon text-2xl mb-6">
+                        <i class="ph-fill ph-lightning"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Manutenção Corretiva</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Reparo rápido de defeitos críticos, troca de compressores, conserto de placas eletrônicas e solução definitiva de vazamentos.
+                    </p>
+                </div>
+
+                <!-- Servico 4 -->
+                <div class="card-hover bg-k-dark border border-white/10 rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-k-neon/10 rounded-xl flex items-center justify-center text-k-neon text-2xl mb-6">
+                        <i class="ph-fill ph-house-line"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Linha Residencial & Comercial</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Conforto térmico impecável para sua casa, escritórios, consultórios, lojas e ambientes comerciais de pequeno e médio porte.
+                    </p>
+                </div>
+
+                <!-- Servico 5 -->
+                <div class="card-hover bg-k-dark border border-white/10 rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-k-neon/10 rounded-xl flex items-center justify-center text-k-neon text-2xl mb-6">
+                        <i class="ph-fill ph-storefront"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Refrigeração Comercial</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Assistência técnica em balcões refrigerados, expositores, cervejeiras, geladeiras comerciais e freezers de alta rotatividade.
+                    </p>
+                </div>
+
+                <!-- Servico 6 -->
+                <div class="card-hover bg-k-dark border border-white/10 rounded-2xl p-8 transition-all duration-300">
+                    <div class="w-14 h-14 bg-k-neon/10 rounded-xl flex items-center justify-center text-k-neon text-2xl mb-6">
+                        <i class="ph-fill ph-thermometer-cold"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">Câmaras Frias</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Projetos, montagem e manutenção em câmaras frigoríficas para conservação de alimentos, carnes, gelo e produtos farmacêuticos.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="field" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-k-neon/10 text-k-neon text-xs font-bold border border-k-neon/30">
+                        <i class="ph-fill ph-rocket-launch"></i> Agilidade em Campo
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white leading-tight">
+                        Sobre o Nosso <span class="text-k-neon">Atendimento Field</span>
+                    </h2>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        Sabemos que um equipamento de refrigeração parado causa transtornos e prejuízos. Por isso, estruturamos um modelo de <strong>Field Service (Atendimento em Campo)</strong> ágil e altamente especializado.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-k-neon/20 flex items-center justify-center text-k-neon shrink-0 mt-1">
+                                <i class="ph-bold ph-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Técnicos Equipados</h4>
+                                <p class="text-slate-400 text-sm">Veículos próprios com ferramentas avançadas e peças de reposição de primeiro uso para diagnósticos imediatos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-k-neon/20 flex items-center justify-center text-k-neon shrink-0 mt-1">
+                                <i class="ph-bold ph-lightning"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Deslocamento Rápido</h4>
+                                <p class="text-slate-400 text-sm">Rotas otimizadas para atendimento emergencial e agendamento pontual em toda a região.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-k-neon/20 flex items-center justify-center text-k-neon shrink-0 mt-1">
+                                <i class="ph-bold ph-certificate"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Diagnóstico Preciso</h4>
+                                <p class="text-slate-400 text-sm">Equipe qualificada com alto índice de resolução no primeiro atendimento (First Time Fix).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 flex justify-center">
+                    <div class="relative w-full max-w-lg bg-k-blue-deep/60 border border-k-neon/40 p-8 rounded-3xl shadow-neon backdrop-blur-md">
+                        <div class="absolute -top-4 -right-4 bg-k-neon text-k-dark font-bold text-xs px-4 py-2 rounded-full uppercase tracking-wider shadow-lg">
+                            Pronto para Atender
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Precisa de Reparo Imediato?</h3>
+                        <p class="text-slate-300 text-sm mb-8">
+                            Não espere o problema piorar. Fale agora com o nosso técnico plantonista pelo WhatsApp e receba um orçamento sem compromisso.
+                        </p>
+                        <a href="https://wa.me/5591991248822?text=Olá,%20preciso%20de%20atendimento%20Field%20urgente!" target="_blank"
+                           class="btn-neon-glow w-full text-white font-bold text-lg py-4 rounded-xl flex items-center justify-center gap-3 shadow-lg">
+                            <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+                            SOLICITAR TÉCNICO AGORA
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes" class="py-24 bg-k-blue-deep/20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <h2 class="text-k-neon font-bold tracking-widest uppercase text-sm">Parceiros de Confiança</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Clientes que <span class="text-k-neon">Atendemos</span></h3>
+                <p class="text-slate-400">Atendemos com excelência desde residências até grandes estruturas comerciais e industriais.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+                <div class="bg-k-dark border border-white/5 hover:border-k-neon/40 p-8 rounded-2xl text-center transition-all group">
+                    <div class="w-16 h-16 bg-k-neon/10 rounded-2xl mx-auto flex items-center justify-center text-k-neon text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-house"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-lg">Residências</h4>
+                    <p class="text-slate-400 text-xs mt-1">Conforto para sua família</p>
+                </div>
+
+                <div class="bg-k-dark border border-white/5 hover:border-k-neon/40 p-8 rounded-2xl text-center transition-all group">
+                    <div class="w-16 h-16 bg-k-neon/10 rounded-2xl mx-auto flex items-center justify-center text-k-neon text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-storefront"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-lg">Comércios & Lojas</h4>
+                    <p class="text-slate-400 text-xs mt-1">Lojas, salas e escritórios</p>
+                </div>
+
+                <div class="bg-k-dark border border-white/5 hover:border-k-neon/40 p-8 rounded-2xl text-center transition-all group">
+                    <div class="w-16 h-16 bg-k-neon/10 rounded-2xl mx-auto flex items-center justify-center text-k-neon text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-fork-knife"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-lg">Restaurantes & Bares</h4>
+                    <p class="text-slate-400 text-xs mt-1">Climatização e geladeiras</p>
+                </div>
+
+                <div class="bg-k-dark border border-white/5 hover:border-k-neon/40 p-8 rounded-2xl text-center transition-all group">
+                    <div class="w-16 h-16 bg-k-neon/10 rounded-2xl mx-auto flex items-center justify-center text-k-neon text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph-fill ph-factory"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-lg">Indústrias & Mercados</h4>
+                    <p class="text-slate-400 text-xs mt-1">Câmaras frias e grande porte</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="localizacao" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-k-dark border border-white/10 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-2xl">
+
+                <div class="lg:col-span-5 p-8 lg:p-12 flex flex-col justify-center space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-k-neon/10 text-k-neon text-xs font-bold border border-k-neon/30 w-max">
+                        <i class="ph-fill ph-map-pin"></i> Base Operacional
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-white">Onde Estamos <span class="text-k-neon">Localizados</span></h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Nossa assistência técnica possui base em Vigia, no Estado do Pará, com raio de atendimento ágil para toda a região circundante.
+                    </p>
+
+                    <div class="space-y-4 pt-4 border-t border-white/10">
+                        <div class="flex items-center gap-4 text-slate-300">
+                            <div class="w-10 h-10 rounded-xl bg-k-neon/10 flex items-center justify-center text-k-neon text-xl shrink-0">
+                                <i class="ph-fill ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Cidade Base</p>
+                                <p class="text-sm text-slate-400">Vigia / PA - Brasil</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 text-slate-300">
+                            <div class="w-10 h-10 rounded-xl bg-k-neon/10 flex items-center justify-center text-k-neon text-xl shrink-0">
+                                <i class="ph-fill ph-phone"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Telefone / WhatsApp</p>
+                                <p class="text-sm text-slate-400">(91) 99124-8822</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 min-h-[350px] relative">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63821.144933939524!2d-48.169123849999995!3d-0.85208635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a5b233a0de19c3%3A0xe547900b1fa6777c!2sVigia%2C%20PA!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr"
+                        class="absolute inset-0 w-full h-full border-0 filter grayscale invert contrast-125 opacity-80"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+
+                <div class="md:col-span-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <span class="font-black text-white text-xl tracking-wider">K REFRIGERAÇÃO</span>
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-md leading-relaxed">
+                        Especialistas em instalações, manutenções corretivas e preventivas de sistemas térmicos. Soluções de alta qualidade com o selo Org. Kilren.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-white font-bold text-sm tracking-wider uppercase text-k-neon">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#servicos" class="hover:text-white transition-colors">Serviços</a></li>
+                        <li><a href="#field" class="hover:text-white transition-colors">Atendimento Field</a></li>
+                        <li><a href="#clientes" class="hover:text-white transition-colors">Clientes</a></li>
+                        <li><a href="#localizacao" class="hover:text-white transition-colors">Localização</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-white font-bold text-sm tracking-wider uppercase text-k-neon">Contato Direto</h4>
+                    <p class="text-slate-300 text-lg font-bold">(91) 99124-8822</p>
+                    <a href="https://wa.me/5591991248822?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento." target="_blank"
+                       class="inline-block text-xs font-semibold text-k-neon border border-k-neon/30 px-3 py-1.5 rounded-full hover:bg-k-neon hover:text-k-dark transition-all">
+                        Chamar no WhatsApp
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> K Refrigeração (Org. Kilren). Todos os direitos reservados.</p>
+                <p>Desenvolvido para máxima performance e conversão.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5591991248822?text=Olá,%20acessei%20o%20site%20da%20K%20Refrigeração%20e%20preciso%20de%20ajuda!" target="_blank"
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl hover:scale-110 transition-transform z-50 animate-bounce"
+       aria-label="Falar pelo WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+    </a>
+
+    <!-- Script de Rotação 3D do Logotipo com o Mouse -->
+    <script>
+        const mainLogo = document.getElementById('main-logo');
+        if (mainLogo) {
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+                mainLogo.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            document.addEventListener('mouseleave', () => {
+                mainLogo.style.transition = "transform 0.5s ease";
+                mainLogo.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+                setTimeout(() => {
+                    mainLogo.style.transition = "none";
+                }, 500);
+            });
+        }
+    </script>
+</body>
+</html>
