@@ -395,118 +395,77 @@
                 </div>
             </div>
 
-            <!-- Coluna da Direita (Nova Animação Moderna de Fundo) -->
-            <div class="lg:col-span-6 flex justify-center items-center relative min-h-[400px]">
+
+<!-- Coluna da Direita (Novo Slide de Fotos com Degradê) -->
+            <div class="lg:col-span-6 relative h-[400px] sm:h-[550px] w-full rounded-3xl overflow-hidden shadow-2xl">
+                
+                <!-- Máscara Escura na Esquerda para mesclar com o fundo e destacar o texto -->
+                <div class="absolute inset-0 bg-gradient-to-r from-[#050B14] via-[#050B14]/80 to-transparent z-10 pointer-events-none"></div>
+                <!-- Degradê sutil nas bordas superior e inferior -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050B14] via-transparent to-[#050B14] z-10 pointer-events-none"></div>
+                <!-- Borda estilizada -->
+                <div class="absolute inset-0 border border-white/5 rounded-3xl z-20 pointer-events-none shadow-[inset_0_0_30px_rgba(0,210,255,0.1)]"></div>
 
                 <style>
-                    .cooling-core-container {
-                        position: relative;
-                        width: 100%;
-                        max-width: 400px;
-                        aspect-ratio: 1;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                    /* Anéis orbitais giratórios */
-                    .orbit-ring {
+                    .hero-slide-track {
                         position: absolute;
-                        border-radius: 50%;
-                        border: 2px solid transparent;
-                    }
-                    .ring-outer {
                         inset: 0;
-                        border-top-color: #00d2ff;
-                        border-bottom-color: #00d2ff;
-                        animation: spin-orbit 12s linear infinite;
-                        opacity: 0.3;
+                        width: 100%; 
+                        height: 100%;
                     }
-                    .ring-middle {
-                        inset: 30px;
-                        border-left-color: #ffffff;
-                        border-right-color: #ffffff;
-                        animation: spin-orbit 8s linear infinite reverse;
-                        opacity: 0.2;
-                    }
-                    .ring-inner {
-                        inset: 60px;
-                        border-top-color: #0055ff;
-                        border-left-color: #0055ff;
-                        border-bottom-color: #0055ff;
-                        animation: spin-orbit 5s linear infinite;
-                        opacity: 0.6;
-                    }
-
-                    /* Efeito de ondas de frio expandindo */
-                    .cold-wave {
+                    .hero-slide {
                         position: absolute;
-                        width: 140px;
-                        height: 140px;
-                        border-radius: 50%;
-                        border: 2px solid #00d2ff;
-                        animation: emit-cold 3s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
                         opacity: 0;
+                        animation: fade-slide 25s infinite ease-in-out;
                     }
-                    .cold-wave:nth-child(2) { animation-delay: 1s; }
-                    .cold-wave:nth-child(3) { animation-delay: 2s; }
+                    /* Atraso para cada uma das 5 fotos (25s total / 5 = 5s por foto) */
+                    .hero-slide:nth-child(1) { animation-delay: 0s; }
+                    .hero-slide:nth-child(2) { animation-delay: 5s; }
+                    .hero-slide:nth-child(3) { animation-delay: 10s; }
+                    .hero-slide:nth-child(4) { animation-delay: 15s; }
+                    .hero-slide:nth-child(5) { animation-delay: 20s; }
 
-                    /* Núcleo central brilhante */
-                    .core-glow {
-                        position: absolute;
-                        width: 140px;
-                        height: 140px;
-                        background: radial-gradient(circle, #00d2ff 0%, transparent 70%);
-                        border-radius: 50%;
-                        animation: pulse-core 2.5s ease-in-out infinite alternate;
-                        filter: blur(15px);
-                    }
-                    .core-icon {
-                        position: relative;
-                        z-index: 10;
-                        color: #ffffff;
-                        font-size: 3.5rem;
-                        filter: drop-shadow(0 0 15px #00d2ff);
-                        animation: float-icon 4s ease-in-out infinite;
-                    }
-
-                    @keyframes spin-orbit {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                    }
-                    @keyframes pulse-core {
-                        0% { transform: scale(0.8); opacity: 0.6; }
-                        100% { transform: scale(1.2); opacity: 1; }
-                    }
-                    @keyframes emit-cold {
-                        0% { transform: scale(1); opacity: 0.8; border-width: 3px; }
-                        100% { transform: scale(3.5); opacity: 0; border-width: 0; }
-                    }
-                    @keyframes float-icon {
-                        0%, 100% { transform: translateY(0); }
-                        50% { transform: translateY(-10px); }
+                    @keyframes fade-slide {
+                        0% { opacity: 0; transform: scale(1.1) translateX(20px); }
+                        5% { opacity: 1; transform: scale(1.05) translateX(10px); }
+                        15% { opacity: 1; transform: scale(1) translateX(0px); }
+                        20% { opacity: 0; transform: scale(0.95) translateX(-10px); }
+                        100% { opacity: 0; }
                     }
                 </style>
 
-                <div class="cooling-core-container">
-                    <!-- Ondas de Frio (Partículas expandindo) -->
-                    <div class="cold-wave"></div>
-                    <div class="cold-wave"></div>
-                    <div class="cold-wave"></div>
+                <div class="hero-slide-track">
+                    <!-- Foto 1: Instalação Ar Condicionado -->
+                    <img src="https://images.unsplash.com/photo-1631010231931-d2c396b444b9?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Manutenção de Ar Condicionado">
+                    <!-- Foto 2: Técnico Trabalhando -->
+                    <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Técnico Especializado">
+                    <!-- Foto 3: Geladeiras / Freezers -->
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Manutenção de Freezers">
+                    <!-- Foto 4: Câmara Fria / Frigorífico -->
+                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Refrigeração Comercial">
+                    <!-- Foto 5: Reparos Elétricos e Peças -->
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Reparos Elétricos e Peças">
+                </div>
 
-                    <!-- Anéis Orbitais -->
-                    <div class="orbit-ring ring-outer"></div>
-                    <div class="orbit-ring ring-middle"></div>
-                    <div class="orbit-ring ring-inner"></div>
-
-                    <!-- Núcleo Central -->
-                    <div class="core-glow"></div>
-
-                    <!-- Ícone no Centro do Núcleo -->
-                    <i class="ph ph-wind core-icon"></i>
+                <!-- Elemento de status flutuante -->
+                <div class="absolute bottom-6 right-6 z-30 bg-[#0a1931]/80 backdrop-blur-md border border-[#00d2ff]/30 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-[0_0_15px_rgba(0,210,255,0.2)]">
+                    <span class="flex h-3 w-3 relative">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00d2ff] opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00d2ff]"></span>
+                    </span>
+                    <span class="text-white text-xs font-bold uppercase tracking-wider">Atendimento Ativo</span>
                 </div>
 
             </div>
 
+
+            
+           
         </div>
     </div>
 </section>
