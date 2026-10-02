@@ -353,20 +353,74 @@
         </div>
     </header>
 
-    <section class="relative pt-36 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-k-neon/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <section class="relative pt-36 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+    <!-- SLIDE DE FUNDO EM TELA CHEIA -->
+    <div class="absolute inset-0 z-0">
+        <!-- Máscara de Degradê: Muito escuro na Esquerda (onde fica o texto) -> Transparente na Direita -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050B14] via-[#050B14]/80 to-[#050B14]/10 z-10 pointer-events-none"></div>
+
+        <!-- Máscara extra apenas para Celular (garante que o texto fique legível em telas pequenas) -->
+        <div class="absolute inset-0 bg-[#050B14]/60 lg:hidden z-10 pointer-events-none"></div>
+
+        <!-- Borda inferior sutil para conectar com a próxima seção -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050B14] to-transparent z-10 pointer-events-none"></div>
+
+        <style>
+            .hero-slide-track {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .hero-slide {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                opacity: 0;
+                animation: fade-slide-full 25s infinite ease-in-out;
+            }
+            /* Atraso para cada uma das 5 fotos */
+            .hero-slide:nth-child(1) { animation-delay: 0s; }
+            .hero-slide:nth-child(2) { animation-delay: 5s; }
+            .hero-slide:nth-child(3) { animation-delay: 10s; }
+            .hero-slide:nth-child(4) { animation-delay: 15s; }
+            .hero-slide:nth-child(5) { animation-delay: 20s; }
+
+            @keyframes fade-slide-full {
+                0% { opacity: 0; transform: scale(1.1) translateX(20px); }
+                5% { opacity: 1; transform: scale(1.05) translateX(10px); }
+                15% { opacity: 1; transform: scale(1) translateX(0px); }
+                20% { opacity: 0; transform: scale(0.95) translateX(-10px); }
+                100% { opacity: 0; }
+            }
+        </style>
+
+        <div class="hero-slide-track">
+            <!-- Fotos do fundo em Alta Resolução (w=1920) -->
+            <img src="https://images.unsplash.com/photo-1631010231931-d2c396b444b9?auto=format&fit=crop&w=1920&q=80" class="hero-slide" alt="Manutenção de Ar Condicionado">
+            <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=1920&q=80" class="hero-slide" alt="Técnico Especializado">
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1920&q=80" class="hero-slide" alt="Manutenção de Freezers">
+            <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=1920&q=80" class="hero-slide" alt="Refrigeração Comercial">
+            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1920&q=80" class="hero-slide" alt="Reparos Elétricos e Peças">
+        </div>
+    </div>
+
+    <!-- CONTEÚDO DA SEÇÃO (Textos e Botões) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-            <!-- Coluna da Esquerda (Textos e Botões mantidos intactos) -->
-            <div class="lg:col-span-6 text-center lg:text-left space-y-6">
+            <!-- Coluna da Esquerda (Textos ocupando 7 colunas) -->
+            <div class="lg:col-span-7 text-center lg:text-left space-y-6">
 
-                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
+                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-2xl">
                     A Solução Definitiva em <span class="text-k-neon">Refrigeração</span>
                 </h1>
 
-                <p class="text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                <p class="text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed drop-shadow-md">
                    Assistência Técnica Especializada que Garante o funcionamento perfeito de seu equipamento. Atendimento ágil onde a experiência faz a diferença.
                 </p>
 
@@ -377,12 +431,12 @@
                         <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
                         FALAR COM O TÉCNICO AGORA
                     </a>
-                    <a href="#servicos" class="px-6 py-4 rounded-full border border-slate-700 hover:border-k-neon text-white font-medium transition-all w-full sm:w-auto text-center">
+                    <a href="#servicos" class="px-6 py-4 rounded-full border border-slate-700/80 bg-[#050B14]/40 hover:border-k-neon backdrop-blur-sm text-white font-medium transition-all w-full sm:w-auto text-center">
                         Conhecer Serviços
                     </a>
                 </div>
 
-                <div class="flex items-center justify-center lg:justify-start gap-8 pt-6 border-t border-white/10 text-slate-400 text-sm">
+                <div class="flex items-center justify-center lg:justify-start gap-8 pt-6 border-t border-white/10 text-slate-300 text-sm">
                     <div class="flex items-center gap-2">
                         <i class="ph-fill ph-check-circle text-k-neon text-lg"></i><span>Rapidez no atendimento</span>
                     </div>
@@ -395,81 +449,23 @@
                 </div>
             </div>
 
+            <!-- Coluna da Direita (Vazia para exibir a foto do fundo perfeitamente) -->
+            <div class="hidden lg:flex lg:col-span-5 justify-end items-end h-full min-h-[400px]">
 
-<!-- Coluna da Direita (Novo Slide de Fotos com Degradê) -->
-            <div class="lg:col-span-6 relative h-[400px] sm:h-[550px] w-full rounded-3xl overflow-hidden shadow-2xl">
-                
-                <!-- Máscara Escura na Esquerda para mesclar com o fundo e destacar o texto -->
-                <div class="absolute inset-0 bg-gradient-to-r from-[#050B14] via-[#050B14]/80 to-transparent z-10 pointer-events-none"></div>
-                <!-- Degradê sutil nas bordas superior e inferior -->
-                <div class="absolute inset-0 bg-gradient-to-t from-[#050B14] via-transparent to-[#050B14] z-10 pointer-events-none"></div>
-                <!-- Borda estilizada -->
-                <div class="absolute inset-0 border border-white/5 rounded-3xl z-20 pointer-events-none shadow-[inset_0_0_30px_rgba(0,210,255,0.1)]"></div>
-
-                <style>
-                    .hero-slide-track {
-                        position: absolute;
-                        inset: 0;
-                        width: 100%; 
-                        height: 100%;
-                    }
-                    .hero-slide {
-                        position: absolute;
-                        inset: 0;
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: center;
-                        opacity: 0;
-                        animation: fade-slide 25s infinite ease-in-out;
-                    }
-                    /* Atraso para cada uma das 5 fotos (25s total / 5 = 5s por foto) */
-                    .hero-slide:nth-child(1) { animation-delay: 0s; }
-                    .hero-slide:nth-child(2) { animation-delay: 5s; }
-                    .hero-slide:nth-child(3) { animation-delay: 10s; }
-                    .hero-slide:nth-child(4) { animation-delay: 15s; }
-                    .hero-slide:nth-child(5) { animation-delay: 20s; }
-
-                    @keyframes fade-slide {
-                        0% { opacity: 0; transform: scale(1.1) translateX(20px); }
-                        5% { opacity: 1; transform: scale(1.05) translateX(10px); }
-                        15% { opacity: 1; transform: scale(1) translateX(0px); }
-                        20% { opacity: 0; transform: scale(0.95) translateX(-10px); }
-                        100% { opacity: 0; }
-                    }
-                </style>
-
-                <div class="hero-slide-track">
-                    <!-- Foto 1: Instalação Ar Condicionado -->
-                    <img src="https://images.unsplash.com/photo-1631010231931-d2c396b444b9?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Manutenção de Ar Condicionado">
-                    <!-- Foto 2: Técnico Trabalhando -->
-                    <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Técnico Especializado">
-                    <!-- Foto 3: Geladeiras / Freezers -->
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Manutenção de Freezers">
-                    <!-- Foto 4: Câmara Fria / Frigorífico -->
-                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Refrigeração Comercial">
-                    <!-- Foto 5: Reparos Elétricos e Peças -->
-                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" class="hero-slide" alt="Reparos Elétricos e Peças">
-                </div>
-
-                <!-- Elemento de status flutuante -->
-                <div class="absolute bottom-6 right-6 z-30 bg-[#0a1931]/80 backdrop-blur-md border border-[#00d2ff]/30 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-[0_0_15px_rgba(0,210,255,0.2)]">
+                <!-- Badge Flutuante de Status no canto inferior direito das fotos -->
+                <div class="mb-10 bg-[#0a1931]/70 backdrop-blur-md border border-[#00d2ff]/30 px-5 py-3 rounded-2xl flex items-center gap-3 shadow-[0_0_25px_rgba(0,210,255,0.15)] transform hover:scale-105 transition-transform cursor-default">
                     <span class="flex h-3 w-3 relative">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00d2ff] opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00d2ff]"></span>
                     </span>
-                    <span class="text-white text-xs font-bold uppercase tracking-wider">Atendimento Ativo</span>
+                    <span class="text-white text-sm font-bold uppercase tracking-widest drop-shadow-md">Atendimento Ativo</span>
                 </div>
 
             </div>
 
-
-            
-           
         </div>
     </div>
 </section>
-
 
    <section id="servicos" class="py-24 bg-[#081225] relative">
     <!-- Efeito de fundo sutil -->
